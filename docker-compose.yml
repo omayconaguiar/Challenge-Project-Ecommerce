@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_dapy
+    restart: always
+    environment:
+      POSTGRES_USER: dapyuser
+      POSTGRES_PASSWORD: dapypassword
+      POSTGRES_DB: dapydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: dapy_backend
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgresql://dapyuser:dapypassword@postgres:5432/dapydb
+      NODE_ENV: development
+      JWT_SECRET: mysecretkey
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+volumes:
+  postgres_data:
