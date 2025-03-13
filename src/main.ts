@@ -1,17 +1,32 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { PrismaService } from './prisma/prisma.service';
+import { SwaggerDocumentBuilder } from './swagger';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Se quiser prefixar todas as rotas com /api:
-  // app.setGlobalPrefix('api');
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    })
+  );
 
-  // Pipe global para validar DTOs
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  const document = new SwaggerDocumentBuilder(app);
+  document.setupSwagger();
 
-  await app.listen(3000);
-  console.log(`Server running on http://localhost:3000`);
+  app.get(PrismaService);
+  app.useGlobalPipes(new ValidationPipe(
+    {
+      transform: true,
+      whitelist: true,
+    }
+  ));
+
+  await app.listen(process.env.PORT || 3000);
+  console.log(`Nest server running on port ${process.env.PORT || 3000}`);
 }
 bootstrap();

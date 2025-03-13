@@ -1,25 +1,51 @@
 # Project Dapy Backend (Express + Prisma)
 
-Este projeto demonstra um backend em **Node.js 20** com **Express 4**, **Prisma 5** e **PostgreSQL 15**, escrito em **TypeScript 5**.  
-Baseado nos requisitos e dicas dos prints (user stories, avaliação de data flow, performance, etc.).
+This project is a **Node.js 20** backend featuring **Express 4**, **Prisma 5**, and **PostgreSQL 15**, all written in **TypeScript 5**. It’s based on requirements and hints from the provided prints (user stories, data flow evaluation, performance considerations, etc.).
 
-## Estrutura
+## Structure
 
-- **prisma/**: Define o schema.prisma e contém a inicialização do Prisma Client.
-- **src/**: Código-fonte, com controllers, services, middlewares e testes unitários.
-- **test/**: Testes de integração (end-to-end).
-- **.env**: Variáveis de ambiente (nunca versionar em repositório público!).
+- **prisma/**  
+  Contains the `schema.prisma` file and Prisma client initialization.
 
-## Requisitos
+- **src/**  
+  Main source code, including controllers, services, middlewares, and unit tests.
 
-- Node.js v20+
-- PostgreSQL 15+
-- `docker-compose` (opcional, se quiser rodar container do PostgreSQL localmente)
-- Prisma 5
+- **test/**  
+  Integration (end-to-end) test files.
 
-## Instalação
+- **.env**  
+  Environment variables (never commit this file to a public repository!).
 
-1. Clonar o repositório
-   ```bash
-   git clone https://github.com/seu-usuario/project-dapy-backend.git
-   cd project-dapy-backend
+## Requirements
+
+- **Node.js v20+**
+- **PostgreSQL 15+**
+- **docker-compose** (optional, if you want to run PostgreSQL locally via Docker)
+- **Prisma 5**
+
+## Installation
+
+Install dependencies:
+
+
+## npm install
+Set up environment:
+
+Copy .env.example to .env and fill in your database credentials, etc.
+For example:
+
+## DATABASE_URL="postgresql://username:password@localhost:5432/db_name"
+Apply Prisma migrations:
+
+
+## npx prisma migrate dev
+Run the development server:
+
+
+## npm run dev
+This starts the server on http://localhost:3000 by default.
+
+Test:
+
+
+## npm run test
