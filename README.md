@@ -1,51 +1,82 @@
-# Project Dapy Backend (Express + Prisma)
+# 🚀 Challenge-Project-Ecommerce
 
-This project is a **Node.js 20** backend featuring **Express 4**, **Prisma 5**, and **PostgreSQL 15**, all written in **TypeScript 5**. It’s based on requirements and hints from the provided prints (user stories, data flow evaluation, performance considerations, etc.).
+A **NestJS + Prisma + PostgreSQL** backend API for managing **products**, **orders**, and **admin operations** in an e-commerce system.
 
-## Structure
+## 📌 Features
+- ✅ **NestJS Framework** with modular architecture
+- ✅ **PostgreSQL** database with Prisma ORM
+- ✅ **Swagger API Documentation**
+- ✅ **Docker support** for easy deployment
+- ✅ **Unit & Integration Testing** using Jest
+- ✅ **Prettier & ESLint** for code formatting and linting
 
-- **prisma/**  
-  Contains the `schema.prisma` file and Prisma client initialization.
+---
 
-- **src/**  
-  Main source code, including controllers, services, middlewares, and unit tests.
+### 2️⃣ Install Dependencies
+```sh
+npm install
+```
 
-- **test/**  
-  Integration (end-to-end) test files.
+### 3️⃣ Generate Prisma schema
+```sh
+npx prisma generate
+```
 
-- **.env**  
-  Environment variables (never commit this file to a public repository!).
+### 3️⃣ Setup Environment Variables
+Create a `.env` file from `.env.sample`:
+```sh
+cp .env.sample .env
+```
+And then fill the `.env` file with appropriate values. Env file is available in 1password project valut.
 
-## Requirements
+### 4️⃣ Run locally with Docker
+To run the **NestJS backend and PostgreSQL** in Docker:
+```sh
+docker-compose -f docker-compose.local.yml up --build -d
+```
+This starts:
+- **NestJS App** on `http://localhost:3000`
+- **PostgreSQL Database** on `localhost:5432`
 
-- **Node.js v20+**
-- **PostgreSQL 15+**
-- **docker-compose** (optional, if you want to run PostgreSQL locally via Docker)
-- **Prisma 5**
+For local development, the NestJS application container will pick up any changes within your local `./src` directory and restart teh server.
+If you change any values outside of that directory, you need to rebuild the container with the command above.
 
-## Installation
+---
 
-Install dependencies:
+## 🧪 Running Tests
+### **Unit Tests**
+```sh
+npm run test:unit
+```
 
+### **Integration Tests**
+```sh
+npm run test:integration
+```
 
-## npm install
-Set up environment:
+### **Test Coverage**
+```sh
+npm run test:cov
+```
 
-Copy .env.example to .env and fill in your database credentials, etc.
-For example:
+---
 
-## DATABASE_URL="postgresql://username:password@localhost:5432/db_name"
-Apply Prisma migrations:
+## 🚀 Deployment
+### **Build for Production**
+```sh
+npm run build
+```
+### **Run in Production**
+```sh
+npm run start:prod
+```
 
+---
 
-## npx prisma migrate dev
-Run the development server:
+## 📜 License
+This project is **UNLICENSED**.
 
+---
 
-## npm run dev
-This starts the server on http://localhost:3000 by default.
-
-Test:
-
-
-## npm run test
+### **🔥 Developed with NestJS, Prisma & PostgreSQL**
+🚀 **Happy coding!**

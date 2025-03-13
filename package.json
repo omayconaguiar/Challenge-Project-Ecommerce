@@ -1,5 +1,5 @@
 {
-  "name": "project-dapy-backend",
+  "name": "challenge-project-ecommerce",
   "version": "1.0.0",
   "description": "Express + Prisma + PostgreSQL Backend",
   "scripts": {
