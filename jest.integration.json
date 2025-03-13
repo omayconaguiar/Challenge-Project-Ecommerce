@@ -1,6 +1,6 @@
 {
   "moduleFileExtensions": ["js", "json", "ts"],
-  "rootDir": "test",
+  "rootDir": "test/integration",
   "testMatch": ["**/*.spec.ts", "**/*.int-spec.ts"],
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"

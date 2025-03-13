@@ -17,9 +17,9 @@ import {
   ApiHeader,
   ApiBearerAuth,
 } from '@nestjs/swagger';
-import {CartService} from './cart.service';
-import {AddCartItemDto} from './dto/add-cart-item.dto';
-import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
+import { CartService } from './cart.service';
+import { AddCartItemDto } from './dto/add-cart-item.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @ApiTags('Cart')
 @ApiBearerAuth()
@@ -29,15 +29,15 @@ export class CartController {
   constructor(private readonly cartService: CartService) {}
 
   @Get('items')
-  @ApiOperation({summary: 'List all cart items user'})
+  @ApiOperation({ summary: 'List all cart items for the logged-in user' })
   @ApiHeader({
     name: 'Authorization',
-    description: 'Bearer <JWT token> (any logged-in user, admin not required)',
+    description: 'Bearer <JWT token> (any logged-in user)',
     required: true,
   })
   @ApiResponse({
     status: 200,
-    description: 'Returns an array of cart items for the user.',
+    description: 'Returns an array of cart items for the user',
     schema: {
       example: [
         {
@@ -66,19 +66,18 @@ export class CartController {
   @Post('items')
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({
-    summary:
-      'Add an item (with color/size/notes) to the cart or increment quantity',
+    summary: 'Add an item to the cart or increment quantity',
     description:
-      'If the product is already in the cart, increments quantity; otherwise creates a new cart item. Allows specifying color, size, and notes for more robust cart functionality.',
+      'If the product already exists in the cart (matching color/size), increments quantity; otherwise creates a new cart item.',
   })
   @ApiHeader({
     name: 'Authorization',
-    description: 'Bearer <JWT token> (any logged-in user, admin not required)',
+    description: 'Bearer <JWT token> (any logged-in user)',
     required: true,
   })
   @ApiResponse({
     status: 201,
-    description: 'Item added/updated in the cart',
+    description: 'Item added or updated in the cart',
     schema: {
       example: {
         id: 'some-cart-item-id',
@@ -104,10 +103,10 @@ export class CartController {
   }
 
   @Delete('items/:id')
-  @ApiOperation({summary: 'Remove an item from the cart by cartItem ID'})
+  @ApiOperation({ summary: 'Remove an item from the cart by cartItem ID' })
   @ApiHeader({
     name: 'Authorization',
-    description: 'Bearer <JWT token> (any logged-in user, admin not required)',
+    description: 'Bearer <JWT token> (any logged-in user)',
     required: true,
   })
   @ApiResponse({

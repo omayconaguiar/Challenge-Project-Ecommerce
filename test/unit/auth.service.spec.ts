@@ -1,44 +1,123 @@
-import {Test, TestingModule} from '@nestjs/testing';
-import {ProductService} from '../../src/product/product.service';
-import {PrismaService} from '../../src/prisma/prisma.service';
+// test/unit/auth.service.spec.ts
 
-describe('ProductService (Unit)', () => {
-  let service: ProductService;
-  let prisma: PrismaService;
+import { Test, TestingModule } from '@nestjs/testing';
+import { AuthService } from '../../src/auth/auth.service';
+import { PrismaService } from '../../src/prisma/prisma.service';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
 
-  beforeAll(async () => {
+// Fazemos mock de bcrypt para manipular compare e hash nos testes
+jest.mock('bcrypt', () => ({
+  compare: jest.fn(),
+  hash: jest.fn(),
+}));
+
+describe('AuthService (Unit)', () => {
+  let authService: AuthService;
+
+  // Mock do PrismaService. Para que o TS aceite, usamos “as unknown as PrismaService”
+  let prismaMock = {
+    user: {
+      findUnique: jest.fn(),
+      create: jest.fn(),
+    },
+  } as unknown as PrismaService;
+
+  // Mock do JwtService
+  let jwtMock = {
+    sign: jest.fn(() => 'mockedToken'),
+    verify: jest.fn(),
+  } as unknown as JwtService;
+
+  beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        ProductService,
-        {
-          provide: PrismaService,
-          useValue: {
-            product: {
-              findMany: jest.fn(),
-              create: jest.fn(),
-              delete: jest.fn(),
-            },
-          },
-        },
+        AuthService,
+        { provide: PrismaService, useValue: prismaMock },
+        { provide: JwtService, useValue: jwtMock },
       ],
     }).compile();
 
-    service = module.get<ProductService>(ProductService);
-    prisma = module.get<PrismaService>(PrismaService);
+    authService = module.get<AuthService>(AuthService);
+
+    // Limpa os mocks antes de cada teste
+    jest.clearAllMocks();
   });
 
-  it('findAll should call prisma.product.findMany', async () => {
-    prisma.product.findMany.mockResolvedValue([]);
-    const result = await service.findAll();
-    expect(prisma.product.findMany).toHaveBeenCalled();
-    expect(result).toEqual([]);
+  it('should be defined', () => {
+    expect(authService).toBeDefined();
   });
 
-  it('create should call prisma.product.create', async () => {
-    const mockDto = {name: 'Laptop', price: 1000};
-    prisma.product.create.mockResolvedValue({id: '1', ...mockDto});
-    const result = await service.create(mockDto as any);
-    expect(prisma.product.create).toHaveBeenCalledWith({data: mockDto});
-    expect(result).toEqual({id: '1', ...mockDto});
+  describe('login', () => {
+    it('lança NotFoundException se o usuário não for encontrado', async () => {
+      (prismaMock.user.findUnique as jest.Mock).mockResolvedValue(null);
+
+      await expect(
+        authService.login('nonexistent@example.com', 'secret'),
+      ).rejects.toThrowError('User not found');
+    });
+
+    it('lança UnauthorizedException se a senha for inválida', async () => {
+      (prismaMock.user.findUnique as jest.Mock).mockResolvedValue({
+        id: '123',
+        password: 'hashed-pass',
+      });
+
+      // Fazemos o compare retornar falso
+      (bcrypt.compare as jest.Mock).mockResolvedValue(false);
+
+      await expect(
+        authService.login('some@example.com', 'wrong'),
+      ).rejects.toThrowError('Invalid credentials');
+    });
+
+    it('retorna tokens se usuário e senha forem válidos', async () => {
+      (prismaMock.user.findUnique as jest.Mock).mockResolvedValue({
+        id: '123',
+        password: 'hashed-pass',
+        role: 'USER',
+      });
+
+      // compare retorna true
+      (bcrypt.compare as jest.Mock).mockResolvedValue(true);
+
+      const result = await authService.login('some@example.com', 'correct');
+
+      expect(jwtMock.sign).toHaveBeenCalled();
+      expect(result.access_token).toBe('mockedToken');
+      expect(result.refresh_token).toBeDefined();
+    });
+  });
+
+  describe('register', () => {
+    it('lança ConflictException se o email já estiver em uso', async () => {
+      (prismaMock.user.findUnique as jest.Mock).mockResolvedValue({ id: '999' });
+
+      await expect(
+        authService.register({ email: 'test@example.com', password: '123' }),
+      ).rejects.toThrowError('Email is already in use');
+    });
+
+    it('cria e retorna o usuário em caso de sucesso', async () => {
+      (prismaMock.user.findUnique as jest.Mock).mockResolvedValue(null);
+
+      (prismaMock.user.create as jest.Mock).mockResolvedValue({
+        id: '111',
+        email: 'new@example.com',
+        role: 'USER',
+      });
+
+      // Mock do bcrypt.hash para retornar 'hashed-password'
+      (bcrypt.hash as jest.Mock).mockResolvedValue('hashed-password');
+
+      const user = await authService.register({
+        email: 'new@example.com',
+        password: 'pass',
+      });
+
+      expect(user.email).toBe('new@example.com');
+      expect(user.role).toBe('USER');
+      expect(bcrypt.hash).toHaveBeenCalledWith('pass', 10);
+    });
   });
 });

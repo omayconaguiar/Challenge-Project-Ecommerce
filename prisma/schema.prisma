@@ -29,12 +29,18 @@ model CartItem {
   userId    String
   productId String
   quantity  Int      @default(1)
-
   color     String?
   size      String?
   notes     String?
 
-  // Relations
   user      User     @relation(fields: [userId], references: [id])
   product   Product  @relation(fields: [productId], references: [id])
+
+  // Se quiser garantir que só exista um cartItem por (userId, productId, color, size), use:
+  // @@unique([userId, productId, color, size])
+
+  // Ou, se preferir apenas índices sem obrigar unicidade, use @@index:
+  // @@index([userId])
+  // @@index([productId])
 }
+
