@@ -28,7 +28,6 @@ import {JwtAuthGuard} from './guards/jwt-auth.guard';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  // 1) NORMAL USER REGISTRATION (PUBLIC)
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({summary: 'User Registration'})
@@ -55,7 +54,6 @@ export class AuthController {
     return this.authService.register(dto);
   }
 
-  // 2) ADMIN REGISTRATION (ADMIN-ONLY)
   @Post('register-admin')
   @UseGuards(JwtAuthGuard, AdminGuard)
   @HttpCode(HttpStatus.CREATED)
@@ -65,7 +63,6 @@ export class AuthController {
 In production, you'd typically hide or strictly protect it so that 
 only existing admins can create new admin accounts.`,
   })
-  // <-- Here we document the required "Authorization" header
   @ApiHeader({
     name: 'Authorization',
     description: 'Bearer token with an ADMIN role',
@@ -95,7 +92,6 @@ only existing admins can create new admin accounts.`,
     return this.authService.register(dto);
   }
 
-  // 3) LOGIN (PUBLIC)
   @Post('login')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
@@ -127,7 +123,6 @@ only existing admins can create new admin accounts.`,
     return this.authService.login(dto.email, dto.password);
   }
 
-  // 4) REFRESH ACCESS TOKEN
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({

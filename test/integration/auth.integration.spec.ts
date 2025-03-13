@@ -20,7 +20,6 @@ describe('AuthController (Integration)', () => {
 
     await app.init();
 
-    // Remove o usuário 'test@example.com' antes de rodar os testes
     await prisma.user.deleteMany({ where: { email: 'test@example.com' } });
   });
 

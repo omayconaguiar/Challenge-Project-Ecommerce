@@ -27,7 +27,7 @@ import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
 @ApiTags('Products')
 @ApiBearerAuth()
 @Controller('products')
-@UseGuards(JwtAuthGuard) // All endpoints require a valid JWT, but NOT admin-specific
+@UseGuards(JwtAuthGuard) 
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 

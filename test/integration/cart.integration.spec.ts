@@ -10,7 +10,6 @@ import { PrismaService } from '../../src/prisma/prisma.service';
 class MockAuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const req = context.switchToHttp().getRequest();
-    // Ajuste este ID para algo válido (UUID)
     req.user = { id: '11111111-1111-1111-1111-111111111111' };
     return true;
   }
@@ -33,7 +32,6 @@ describe('CartController (Integration) - Mock userId', () => {
 
     await app.init();
 
-    // Cria um usuário com o mesmo ID do mock
     await prisma.user.create({
       data: {
         id: '11111111-1111-1111-1111-111111111111',
@@ -42,7 +40,6 @@ describe('CartController (Integration) - Mock userId', () => {
       },
     });
 
-    // Cria também um produto "prod-123" para evitar FK em productId
     await prisma.product.create({
       data: {
         id: 'prod-123',
@@ -75,7 +72,6 @@ describe('CartController (Integration) - Mock userId', () => {
       .expect(200);
 
     expect(Array.isArray(resp.body)).toBe(true);
-    // Se já inserimos 1 item, deve retornar >= 1
     expect(resp.body.length).toBeGreaterThanOrEqual(1);
   });
 });

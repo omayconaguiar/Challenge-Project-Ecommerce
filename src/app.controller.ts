@@ -2,7 +2,7 @@ import {Controller, Get, Redirect} from '@nestjs/common';
 import {ConfigService} from '@nestjs/config';
 import {ApiExcludeController} from '@nestjs/swagger';
 
-@ApiExcludeController() // This hides the controller from Swagger
+@ApiExcludeController()
 @Controller()
 export class AppController {
   constructor(private configService: ConfigService) {}

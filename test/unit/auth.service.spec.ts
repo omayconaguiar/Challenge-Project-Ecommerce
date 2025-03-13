@@ -6,7 +6,6 @@ import { PrismaService } from '../../src/prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 
-// Fazemos mock de bcrypt para manipular compare e hash nos testes
 jest.mock('bcrypt', () => ({
   compare: jest.fn(),
   hash: jest.fn(),
@@ -15,7 +14,6 @@ jest.mock('bcrypt', () => ({
 describe('AuthService (Unit)', () => {
   let authService: AuthService;
 
-  // Mock do PrismaService. Para que o TS aceite, usamos “as unknown as PrismaService”
   let prismaMock = {
     user: {
       findUnique: jest.fn(),
@@ -23,7 +21,6 @@ describe('AuthService (Unit)', () => {
     },
   } as unknown as PrismaService;
 
-  // Mock do JwtService
   let jwtMock = {
     sign: jest.fn(() => 'mockedToken'),
     verify: jest.fn(),
@@ -40,7 +37,6 @@ describe('AuthService (Unit)', () => {
 
     authService = module.get<AuthService>(AuthService);
 
-    // Limpa os mocks antes de cada teste
     jest.clearAllMocks();
   });
 
@@ -63,7 +59,6 @@ describe('AuthService (Unit)', () => {
         password: 'hashed-pass',
       });
 
-      // Fazemos o compare retornar falso
       (bcrypt.compare as jest.Mock).mockResolvedValue(false);
 
       await expect(
@@ -78,7 +73,6 @@ describe('AuthService (Unit)', () => {
         role: 'USER',
       });
 
-      // compare retorna true
       (bcrypt.compare as jest.Mock).mockResolvedValue(true);
 
       const result = await authService.login('some@example.com', 'correct');
@@ -107,7 +101,6 @@ describe('AuthService (Unit)', () => {
         role: 'USER',
       });
 
-      // Mock do bcrypt.hash para retornar 'hashed-password'
       (bcrypt.hash as jest.Mock).mockResolvedValue('hashed-password');
 
       const user = await authService.register({
