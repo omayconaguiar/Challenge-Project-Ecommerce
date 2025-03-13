@@ -1,6 +1,6 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { EmployerService } from '../../src/employer/employer.service';
-import { PrismaService } from '../../src/prisma/prisma.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {EmployerService} from '../../src/employer/employer.service';
+import {PrismaService} from '../../src/prisma/prisma.service';
 
 describe('EmployerService (Unit)', () => {
   let service: EmployerService;
@@ -26,17 +26,21 @@ describe('EmployerService (Unit)', () => {
   });
 
   it('should create an employer', async () => {
-    const dto = { email: 'user@company.com', role: 'ADMIN', companyId: 'uuid-123' };
-    prisma.employer.create.mockResolvedValue({ id: 1, ...dto });
+    const dto = {
+      email: 'user@company.com',
+      role: 'ADMIN',
+      companyId: 'uuid-123',
+    };
+    prisma.employer.create.mockResolvedValue({id: 1, ...dto});
 
     const result = await service.create(dto as any);
     expect(prisma.employer.create).toHaveBeenCalledWith({
       data: {
         email: 'user@company.com',
         role: 'ADMIN',
-        company: { connect: { id: 'uuid-123' } },
+        company: {connect: {id: 'uuid-123'}},
       },
     });
-    expect(result).toEqual({ id: 1, ...dto });
+    expect(result).toEqual({id: 1, ...dto});
   });
 });

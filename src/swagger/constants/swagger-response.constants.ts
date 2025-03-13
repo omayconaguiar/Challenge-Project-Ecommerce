@@ -1,5 +1,5 @@
-import { ApiResponseOptions } from '@nestjs/swagger';
-import { SchemaObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
+import {ApiResponseOptions} from '@nestjs/swagger';
+import {SchemaObject} from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 
 interface ExtraQueryParameterDto {
   name: string;
@@ -51,7 +51,7 @@ export const SWAGGER_OPERATION = (
   hasActiveOrChangeStatusProperty: boolean = true,
   customSummary?: string,
   customDescription?: string,
-): { summary: string; description: string } => {
+): {summary: string; description: string} => {
   resource = isPaginated ? pluralize(resource) : resource;
 
   const summary = isPaginated
@@ -60,10 +60,10 @@ export const SWAGGER_OPERATION = (
 
   const description = isPaginated
     ? getPaginationQueryParameterDescription(
-      extraQueryParameters,
-      hasActiveOrChangeStatusProperty,
-      isActiveProperty,
-    )
+        extraQueryParameters,
+        hasActiveOrChangeStatusProperty,
+        isActiveProperty,
+      )
     : getByIdQueryParameterDescription(resource);
 
   return {
@@ -95,15 +95,16 @@ const getPaginationQueryParameterDescription = (
 
   const extraParamsFormatted = extraQueryParameters
     ? extraQueryParameters
-      .map(
-        (param) =>
-          `| ${param.name} | ${param.type} | ${param.description} | ${param.isRequired ? 'Required' : 'Optional'} |`,
-      )
-      .join('\n')
+        .map(
+          (param) =>
+            `| ${param.name} | ${param.type} | ${param.description} | ${param.isRequired ? 'Required' : 'Optional'} |`,
+        )
+        .join('\n')
     : '';
 
   const finalQueryParams =
-    baseQueryParams.join('\n') + (extraParamsFormatted ? `\n${extraParamsFormatted}` : '');
+    baseQueryParams.join('\n') +
+    (extraParamsFormatted ? `\n${extraParamsFormatted}` : '');
 
   return (
     '**Query Parameters:**\n\n' +

@@ -1,5 +1,5 @@
-import { _SWAGGER_TAGS } from '../swagger';
-import { Request, Response } from 'express';
+import {_SWAGGER_TAGS} from '../swagger';
+import {Request, Response} from 'express';
 
 export const serveReDoc = (req: Request, res: Response) => {
   const dynamicStyles = _SWAGGER_TAGS

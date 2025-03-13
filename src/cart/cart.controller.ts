@@ -17,9 +17,9 @@ import {
   ApiHeader,
   ApiBearerAuth,
 } from '@nestjs/swagger';
-import { CartService } from './cart.service';
-import { AddCartItemDto } from './dto/add-cart-item.dto';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import {CartService} from './cart.service';
+import {AddCartItemDto} from './dto/add-cart-item.dto';
+import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
 
 @ApiTags('Cart')
 @ApiBearerAuth()
@@ -29,7 +29,7 @@ export class CartController {
   constructor(private readonly cartService: CartService) {}
 
   @Get('items')
-  @ApiOperation({ summary: 'List all cart items user' })
+  @ApiOperation({summary: 'List all cart items user'})
   @ApiHeader({
     name: 'Authorization',
     description: 'Bearer <JWT token> (any logged-in user, admin not required)',
@@ -66,7 +66,8 @@ export class CartController {
   @Post('items')
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({
-    summary: 'Add an item (with color/size/notes) to the cart or increment quantity',
+    summary:
+      'Add an item (with color/size/notes) to the cart or increment quantity',
     description:
       'If the product is already in the cart, increments quantity; otherwise creates a new cart item. Allows specifying color, size, and notes for more robust cart functionality.',
   })
@@ -98,12 +99,12 @@ export class CartController {
       dto.quantity,
       dto.color,
       dto.size,
-      dto.notes
+      dto.notes,
     );
   }
 
   @Delete('items/:id')
-  @ApiOperation({ summary: 'Remove an item from the cart by cartItem ID' })
+  @ApiOperation({summary: 'Remove an item from the cart by cartItem ID'})
   @ApiHeader({
     name: 'Authorization',
     description: 'Bearer <JWT token> (any logged-in user, admin not required)',

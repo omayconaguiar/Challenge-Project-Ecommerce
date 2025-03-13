@@ -19,10 +19,10 @@ import {
   ApiHeader,
   ApiBearerAuth,
 } from '@nestjs/swagger';
-import { ProductService } from './product.service';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import {ProductService} from './product.service';
+import {CreateProductDto} from './dto/create-product.dto';
+import {UpdateProductDto} from './dto/update-product.dto';
+import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
 
 @ApiTags('Products')
 @ApiBearerAuth()
@@ -37,7 +37,7 @@ export class ProductController {
     description: 'Bearer <JWT token> (any logged-in user, admin not required)',
     required: true,
   })
-  @ApiOperation({ summary: 'Get all products' })
+  @ApiOperation({summary: 'Get all products'})
   @ApiResponse({
     status: 200,
     description: 'Returns an array of products.',
@@ -68,7 +68,7 @@ export class ProductController {
     description: 'Bearer <JWT token> (any logged-in user, admin not required)',
     required: true,
   })
-  @ApiOperation({ summary: 'Get one product by ID' })
+  @ApiOperation({summary: 'Get one product by ID'})
   @ApiParam({
     name: 'id',
     description: 'The unique identifier of the product',
@@ -134,7 +134,7 @@ export class ProductController {
     description: 'Bearer <JWT token> (any logged-in user, admin not required)',
     required: true,
   })
-  @ApiOperation({ summary: 'Update an existing product (partial update)' })
+  @ApiOperation({summary: 'Update an existing product (partial update)'})
   @ApiParam({
     name: 'id',
     description: 'The ID of the product to update',
@@ -171,7 +171,7 @@ export class ProductController {
     description: 'Bearer <JWT token> (any logged-in user, admin not required)',
     required: true,
   })
-  @ApiOperation({ summary: 'Delete a product by ID' })
+  @ApiOperation({summary: 'Delete a product by ID'})
   @ApiParam({
     name: 'id',
     description: 'The ID of the product to delete',

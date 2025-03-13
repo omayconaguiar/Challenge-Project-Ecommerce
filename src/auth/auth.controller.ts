@@ -8,20 +8,20 @@ import {
   UnauthorizedException,
   ConflictException,
   ForbiddenException,
-  UseGuards
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiOperation,
   ApiResponse,
   ApiTags,
   ApiBearerAuth,
-  ApiHeader
+  ApiHeader,
 } from '@nestjs/swagger';
-import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
-import { RegisterDto } from './dto/register.dto';
-import { AdminGuard } from './guards/admin.guard';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import {AuthService} from './auth.service';
+import {LoginDto} from './dto/login.dto';
+import {RegisterDto} from './dto/register.dto';
+import {AdminGuard} from './guards/admin.guard';
+import {JwtAuthGuard} from './guards/jwt-auth.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -31,7 +31,7 @@ export class AuthController {
   // 1) NORMAL USER REGISTRATION (PUBLIC)
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'User Registration' })
+  @ApiOperation({summary: 'User Registration'})
   @ApiResponse({
     status: 201,
     description: 'User registered successfully',
@@ -39,17 +39,17 @@ export class AuthController {
       example: {
         id: 'uuid-of-the-created-user',
         email: 'newuser@company.com',
-        role: 'USER'
+        role: 'USER',
       },
     },
   })
   @ApiResponse({
     status: 400,
-    description: 'Bad Request (e.g., validation failed).'
+    description: 'Bad Request (e.g., validation failed).',
   })
   @ApiResponse({
     status: 409,
-    description: 'Conflict (e.g., if that email is already taken).'
+    description: 'Conflict (e.g., if that email is already taken).',
   })
   async register(@Body() dto: RegisterDto) {
     return this.authService.register(dto);
@@ -63,7 +63,7 @@ export class AuthController {
     summary: 'Admin Registration (admin-only)',
     description: `IMPORTANT: This endpoint is for demonstration only. 
 In production, you'd typically hide or strictly protect it so that 
-only existing admins can create new admin accounts.`
+only existing admins can create new admin accounts.`,
   })
   // <-- Here we document the required "Authorization" header
   @ApiHeader({
@@ -101,7 +101,7 @@ only existing admins can create new admin accounts.`
   @ApiOperation({
     summary: 'User Login',
     description:
-      'Logs in a user (email/password) and returns both access and refresh tokens with expiration info.'
+      'Logs in a user (email/password) and returns both access and refresh tokens with expiration info.',
   })
   @ApiResponse({
     status: 200,
@@ -111,17 +111,17 @@ only existing admins can create new admin accounts.`
         access_token: 'eyJhbGciOiJI...',
         access_expires_in: 900,
         refresh_token: 'eyJhbGciOiJI...',
-        refresh_expires_in: 604800
-      }
+        refresh_expires_in: 604800,
+      },
     },
   })
   @ApiResponse({
     status: 401,
-    description: 'Unauthorized if credentials are invalid.'
+    description: 'Unauthorized if credentials are invalid.',
   })
   @ApiResponse({
     status: 404,
-    description: 'Not found if user does not exist (depending on your logic).'
+    description: 'Not found if user does not exist (depending on your logic).',
   })
   async login(@Body() dto: LoginDto) {
     return this.authService.login(dto.email, dto.password);
@@ -132,7 +132,8 @@ only existing admins can create new admin accounts.`
   @HttpCode(HttpStatus.OK)
   @ApiOperation({
     summary: 'Refresh Access Token',
-    description: 'Uses a valid refresh token to issue a new short-lived access token.'
+    description:
+      'Uses a valid refresh token to issue a new short-lived access token.',
   })
   @ApiResponse({
     status: 200,
@@ -146,11 +147,11 @@ only existing admins can create new admin accounts.`
   })
   @ApiResponse({
     status: 401,
-    description: 'Unauthorized if refresh token is invalid or expired.'
+    description: 'Unauthorized if refresh token is invalid or expired.',
   })
   @ApiResponse({
     status: 404,
-    description: 'Not found if relevant resources are missing (e.g., user).'
+    description: 'Not found if relevant resources are missing (e.g., user).',
   })
   async refresh(@Body('refreshToken') refreshToken: string) {
     try {

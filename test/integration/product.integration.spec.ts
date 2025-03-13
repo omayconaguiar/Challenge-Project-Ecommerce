@@ -1,6 +1,6 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
-import { AppModule } from '../../src/app.module';
+import {Test, TestingModule} from '@nestjs/testing';
+import {INestApplication, ValidationPipe} from '@nestjs/common';
+import {AppModule} from '../../src/app.module';
 import * as request from 'supertest';
 
 describe('ProductController (Integration)', () => {
@@ -12,7 +12,7 @@ describe('ProductController (Integration)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+    app.useGlobalPipes(new ValidationPipe({whitelist: true}));
     await app.init();
   });
 
@@ -30,7 +30,7 @@ describe('ProductController (Integration)', () => {
     // Por simplicidade, assumo falha se sem token
     const res = await request(app.getHttpServer())
       .post('/products')
-      .send({ name: 'Laptop', price: 999.99 });
+      .send({name: 'Laptop', price: 999.99});
     // provavelmente 403
     expect([201, 403]).toContain(res.status);
   });

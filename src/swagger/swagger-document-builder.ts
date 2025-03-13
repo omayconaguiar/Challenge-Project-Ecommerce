@@ -1,10 +1,10 @@
-import { INestApplication } from '@nestjs/common';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { _SWAGGER_TAGS } from './swagger-tags/swagger-tags.constants';
-import { SwaggerUI } from './swagger-ui.class';
+import {INestApplication} from '@nestjs/common';
+import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
+import {_SWAGGER_TAGS} from './swagger-tags/swagger-tags.constants';
+import {SwaggerUI} from './swagger-ui.class';
 // import * as packageJson from '../../package.json';
 import * as express from 'express';
-import { serveReDoc } from '../redoc/redoc-config';
+import {serveReDoc} from '../redoc/redoc-config';
 
 export class SwaggerDocumentBuilder {
   private readonly expressApp: express.Application;
@@ -23,7 +23,9 @@ export class SwaggerDocumentBuilder {
   }
 
   private buildConfig() {
-    const apiDescription = 'E-Commerce.\n\n' + 'For further assistance, please contact E-Commerce support.';
+    const apiDescription =
+      'E-Commerce.\n\n' +
+      'For further assistance, please contact E-Commerce support.';
 
     const docBuilder = new DocumentBuilder()
       .setTitle('E-Commerce Documentation')
@@ -50,7 +52,12 @@ export class SwaggerDocumentBuilder {
   private initializeSwagger() {
     const document = this.createDocument();
     const swaggerUI = new SwaggerUI(_SWAGGER_TAGS);
-    SwaggerModule.setup('api/swagger', this.app, document, swaggerUI.customOptions);
+    SwaggerModule.setup(
+      'api/swagger',
+      this.app,
+      document,
+      swaggerUI.customOptions,
+    );
   }
 
   private initializeReDoc() {
@@ -60,7 +67,9 @@ export class SwaggerDocumentBuilder {
 
   private setupReDocRoutes(document: any) {
     // Serve the Swagger JSON for ReDoc
-    this.expressApp.use('/api-json', (req: any, res: any) => res.json(document));
+    this.expressApp.use('/api-json', (req: any, res: any) =>
+      res.json(document),
+    );
     // Serve ReDoc with the Swagger JSON
     this.expressApp.get('/api/docs', serveReDoc);
   }

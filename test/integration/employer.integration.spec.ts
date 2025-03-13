@@ -1,6 +1,6 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
-import { AppModule } from '../../src/app.module';
+import {Test, TestingModule} from '@nestjs/testing';
+import {INestApplication, ValidationPipe} from '@nestjs/common';
+import {AppModule} from '../../src/app.module';
 import * as request from 'supertest';
 
 describe('EmployerController (Integration)', () => {
@@ -12,7 +12,7 @@ describe('EmployerController (Integration)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+    app.useGlobalPipes(new ValidationPipe({whitelist: true}));
     await app.init();
   });
 

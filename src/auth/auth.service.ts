@@ -5,9 +5,9 @@ import {
   ConflictException,
   ForbiddenException,
 } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { RegisterDto } from './dto/register.dto';
-import { JwtService, JwtVerifyOptions } from '@nestjs/jwt';
+import {PrismaService} from '../prisma/prisma.service';
+import {RegisterDto} from './dto/register.dto';
+import {JwtService, JwtVerifyOptions} from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class AuthService {
 
   async login(
     email: string,
-    password: string
+    password: string,
   ): Promise<{
     access_token: string;
     access_expires_in: number;
@@ -27,7 +27,7 @@ export class AuthService {
     refresh_expires_in: number;
   }> {
     // 1) Check if the user exists
-    const user = await this.prisma.user.findUnique({ where: { email } });
+    const user = await this.prisma.user.findUnique({where: {email}});
     if (!user) {
       // Could also throw UnauthorizedException; your choice
       throw new NotFoundException('User not found');
@@ -40,10 +40,10 @@ export class AuthService {
     }
 
     // 3) Prepare token payload
-    const payload = { sub: user.id, role: user.role };
+    const payload = {sub: user.id, role: user.role};
 
     // 4) Define expirations (in seconds)
-    const accessExpiresIn = 60 * 15;      // 15 minutes
+    const accessExpiresIn = 60 * 15; // 15 minutes
     const refreshExpiresIn = 60 * 60 * 24 * 7; // 7 days
 
     // 5) Sign the tokens
@@ -73,7 +73,7 @@ export class AuthService {
 
     // 1) Ensure the email is not already in use
     const existing = await this.prisma.user.findUnique({
-      where: { email: dto.email },
+      where: {email: dto.email},
     });
     if (existing) {
       throw new ConflictException('Email is already in use');

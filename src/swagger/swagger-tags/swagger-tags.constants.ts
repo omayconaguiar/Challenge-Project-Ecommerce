@@ -1,4 +1,3 @@
-import { SwaggerTag } from './swagger-tags.interface';
+import {SwaggerTag} from './swagger-tags.interface';
 
-export const _SWAGGER_TAGS: SwaggerTag[] = [
-];
+export const _SWAGGER_TAGS: SwaggerTag[] = [];

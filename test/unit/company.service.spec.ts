@@ -1,6 +1,6 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { ProductService } from '../../src/product/product.service';
-import { PrismaService } from '../../src/prisma/prisma.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {ProductService} from '../../src/product/product.service';
+import {PrismaService} from '../../src/prisma/prisma.service';
 
 describe('ProductService (Unit)', () => {
   let service: ProductService;
@@ -35,10 +35,10 @@ describe('ProductService (Unit)', () => {
   });
 
   it('create should call prisma.product.create', async () => {
-    const mockDto = { name: 'Laptop', price: 1000 };
-    prisma.product.create.mockResolvedValue({ id: '1', ...mockDto });
+    const mockDto = {name: 'Laptop', price: 1000};
+    prisma.product.create.mockResolvedValue({id: '1', ...mockDto});
     const result = await service.create(mockDto as any);
-    expect(prisma.product.create).toHaveBeenCalledWith({ data: mockDto });
-    expect(result).toEqual({ id: '1', ...mockDto });
+    expect(prisma.product.create).toHaveBeenCalledWith({data: mockDto});
+    expect(result).toEqual({id: '1', ...mockDto});
   });
 });

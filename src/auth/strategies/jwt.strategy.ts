@@ -1,13 +1,13 @@
 // jwt.strategy.ts
 
-import { Injectable } from '@nestjs/common';
-import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
+import {Injectable} from '@nestjs/common';
+import {PassportStrategy} from '@nestjs/passport';
+import {ExtractJwt, Strategy} from 'passport-jwt';
 
 // If you want type-safety for the JWT payload, define an interface
 interface JwtPayload {
-  sub: string;    // user.id
-  role: string;   // user.role
+  sub: string; // user.id
+  role: string; // user.role
 }
 
 @Injectable()
@@ -29,6 +29,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: JwtPayload) {
     // This method runs after the token is decoded successfully.
     // Return the user info which is then attached to req.user
-    return { userId: payload.sub, role: payload.role };
+    return {userId: payload.sub, role: payload.role};
   }
 }

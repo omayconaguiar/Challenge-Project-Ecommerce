@@ -1,5 +1,5 @@
-import { SWAGGER_UI_CONSTANTS } from './constants/swagger-ui.constants';
-import { SwaggerTag } from './swagger-tags/swagger-tags.interface';
+import {SWAGGER_UI_CONSTANTS} from './constants/swagger-ui.constants';
+import {SwaggerTag} from './swagger-tags/swagger-tags.interface';
 
 export class SwaggerUI {
   constructor(private readonly tags: SwaggerTag[]) {}
@@ -12,7 +12,9 @@ export class SwaggerUI {
 
   private generateCustomCss(): string {
     let css = '';
-    const parents = new Set(this.tags.filter((tag) => tag.parent === '').map((tag) => tag.name));
+    const parents = new Set(
+      this.tags.filter((tag) => tag.parent === '').map((tag) => tag.name),
+    );
 
     parents.forEach((parent) => {
       const formattedParent = parent.replace(/ /g, '%20');

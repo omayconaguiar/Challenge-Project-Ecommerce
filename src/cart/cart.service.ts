@@ -1,5 +1,5 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import {Injectable, NotFoundException} from '@nestjs/common';
+import {PrismaService} from '../prisma/prisma.service';
 
 @Injectable()
 export class CartService {
@@ -10,7 +10,7 @@ export class CartService {
    */
   async findAllForUser(userId: string) {
     return this.prisma.cartItem.findMany({
-      where: { userId },
+      where: {userId},
       include: {
         // If you want to return product info:
         product: true,
@@ -28,16 +28,16 @@ export class CartService {
     quantity = 1,
     color?: string,
     size?: string,
-    notes?: string
+    notes?: string,
   ) {
     const existing = await this.prisma.cartItem.findFirst({
-      where: { userId, productId, color, size },
+      where: {userId, productId, color, size},
     });
 
     if (existing) {
       // Increment existing quantity
       return this.prisma.cartItem.update({
-        where: { id: existing.id },
+        where: {id: existing.id},
         data: {
           quantity: existing.quantity + quantity,
         },
@@ -63,7 +63,7 @@ export class CartService {
   async removeItem(cartItemId: string) {
     try {
       return await this.prisma.cartItem.delete({
-        where: { id: cartItemId },
+        where: {id: cartItemId},
       });
     } catch (error) {
       // If no item with that ID, Prisma typically throws an error; transform to 404:
