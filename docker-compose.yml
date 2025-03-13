@@ -1,34 +1,16 @@
-version: '3.8'
-
+# version: '3.8'  <-- pode remover ou comentar
 services:
-  postgres:
+  db:
     image: postgres:15
-    container_name: postgres_dapy
-    restart: always
+    container_name: polaris-postgres
     environment:
-      POSTGRES_USER: dapyuser
-      POSTGRES_PASSWORD: dapypassword
-      POSTGRES_DB: dapydb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: passwordd
+      POSTGRES_DB: mydatabase
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  app:
-    build: .
-    container_name: dapy_backend
-    restart: always
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgresql://dapyuser:dapypassword@postgres:5432/dapydb
-      NODE_ENV: development
-      JWT_SECRET: mysecretkey
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+  pgdata:

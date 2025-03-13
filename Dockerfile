@@ -1,23 +1,14 @@
-# Use an official Node.js runtime as the base image
-FROM node:18-alpine
+FROM node:20-alpine
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy the rest of the application files
 COPY . .
 
-# Expose the application port
+RUN npm run build
+
 EXPOSE 3000
 
-# Generate Prisma client
-RUN npx prisma generate
-
-# Command to run the application
-CMD ["npm", "run", "start:dev"]
+CMD ["node", "dist/server.js"]

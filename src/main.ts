@@ -1,23 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { PrismaService } from './prisma/prisma.service';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const config = new DocumentBuilder()
-    .setTitle('Project Dapy API')
-    .setDescription('API documentation for Project Dapy Backend')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
+  // Se quiser prefixar todas as rotas com /api:
+  // app.setGlobalPrefix('api');
 
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  // Pipe global para validar DTOs
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
-  app.get(PrismaService);
-
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(3000);
+  console.log(`Server running on http://localhost:3000`);
 }
 bootstrap();
