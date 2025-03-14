@@ -1,7 +1,5 @@
-// register.dto.ts
 import {ApiProperty} from '@nestjs/swagger';
-import {IsEmail, IsNotEmpty, IsOptional} from 'class-validator';
-import {Exclude} from 'class-transformer';
+import {IsEmail, IsNotEmpty, IsOptional, MinLength} from 'class-validator';
 
 export class RegisterDto {
   @ApiProperty({
@@ -16,8 +14,22 @@ export class RegisterDto {
     description: 'Desired account password.',
   })
   @IsNotEmpty()
+  @MinLength(6)
   password: string;
 
-  @Exclude()
+  @ApiProperty({
+    example: 'John Doe',
+    description: 'The full name of the user.',
+    required: true,
+  })
+  @IsNotEmpty()
+  name: string;
+
+  @ApiProperty({
+    example: 'USER',
+    description: 'The role of the user (Default: USER).',
+    required: false,
+  })
+  @IsOptional()
   role?: string;
 }

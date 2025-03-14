@@ -9,6 +9,7 @@ import {
   HttpCode,
   HttpStatus,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -27,7 +28,7 @@ import {JwtAuthGuard} from '../auth/guards/jwt-auth.guard';
 @ApiTags('Products')
 @ApiBearerAuth()
 @Controller('products')
-@UseGuards(JwtAuthGuard) 
+@UseGuards(JwtAuthGuard)
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
@@ -37,10 +38,11 @@ export class ProductController {
     description: 'Bearer <JWT token> (any logged-in user, admin not required)',
     required: true,
   })
-  @ApiOperation({summary: 'Get all products'})
+  @ApiOperation({summary: 'Get all products (Only user’s own products)'})
   @ApiResponse({
     status: 200,
-    description: 'Returns an array of products.',
+    description:
+      'Returns an array of the user’s products, including cart items.',
     schema: {
       example: [
         {
@@ -48,18 +50,20 @@ export class ProductController {
           name: 'Laptop X',
           price: 1299.99,
           description: 'High-end gaming laptop',
-        },
-        {
-          id: '124',
-          name: 'Phone Y',
-          price: 699.0,
-          description: 'Latest smartphone with amazing camera',
+          cartItems: [
+            {
+              quantity: 2,
+              color: 'Black',
+              size: '15-inch',
+              notes: 'Gift wrap included',
+            },
+          ],
         },
       ],
     },
   })
-  findAll() {
-    return this.productService.findAll();
+  findAll(@Req() req) {
+    return this.productService.findAll(req.user.id);
   }
 
   @Get(':id')
@@ -68,7 +72,7 @@ export class ProductController {
     description: 'Bearer <JWT token> (any logged-in user, admin not required)',
     required: true,
   })
-  @ApiOperation({summary: 'Get one product by ID'})
+  @ApiOperation({summary: 'Get one product by ID (Only user’s own products)'})
   @ApiParam({
     name: 'id',
     description: 'The unique identifier of the product',
@@ -76,22 +80,31 @@ export class ProductController {
   })
   @ApiResponse({
     status: 200,
-    description: 'Returns the product with the given ID.',
+    description:
+      'Returns the product with the given ID, including cart item details.',
     schema: {
       example: {
         id: '123',
         name: 'Laptop X',
         price: 1299.99,
         description: 'High-end gaming laptop',
+        cartItems: [
+          {
+            quantity: 1,
+            color: 'Red',
+            size: 'M',
+            notes: 'Rush delivery requested',
+          },
+        ],
       },
     },
   })
   @ApiResponse({
     status: 404,
-    description: 'Product not found.',
+    description: 'Product not found or does not belong to user.',
   })
-  findOne(@Param('id') id: string) {
-    return this.productService.findOne(id);
+  findOne(@Param('id') id: string, @Req() req) {
+    return this.productService.findOne(id, req.user.id);
   }
 
   @Post()
@@ -100,32 +113,33 @@ export class ProductController {
     description: 'Bearer <JWT token> (any logged-in user, admin not required)',
     required: true,
   })
-  @ApiOperation({
-    summary: 'Create a new product',
-    description: 'Create a new product.',
-  })
+  @ApiOperation({summary: 'Create a new product (Linked to logged-in user)'})
   @ApiBody({
-    description: 'The product data to create',
+    description: 'The product data to create, including cart item details.',
     type: CreateProductDto,
   })
   @ApiResponse({
     status: 201,
-    description: 'Product created successfully.',
+    description: 'Product created successfully, including cart item details.',
     schema: {
       example: {
         id: '125',
         name: 'Tablet Z',
         price: 499.99,
         description: 'A lightweight tablet for everyday tasks',
+        cartItems: [
+          {
+            quantity: 1,
+            color: 'Silver',
+            size: '10-inch',
+            notes: 'Standard packaging',
+          },
+        ],
       },
     },
   })
-  @ApiResponse({
-    status: 401,
-    description: 'Unauthorized if not logged in or token invalid.',
-  })
-  create(@Body() createDto: CreateProductDto) {
-    return this.productService.create(createDto);
+  create(@Body() createDto: CreateProductDto, @Req() req) {
+    return this.productService.create(req.user.id, createDto);
   }
 
   @Patch(':id')
@@ -134,34 +148,48 @@ export class ProductController {
     description: 'Bearer <JWT token> (any logged-in user, admin not required)',
     required: true,
   })
-  @ApiOperation({summary: 'Update an existing product (partial update)'})
+  @ApiOperation({
+    summary: 'Update an existing product (Only user’s own products)',
+  })
   @ApiParam({
     name: 'id',
     description: 'The ID of the product to update',
     example: '123',
   })
   @ApiBody({
-    description: 'Fields to update. All are optional.',
+    description: 'Fields to update, including cart item details.',
     type: UpdateProductDto,
   })
   @ApiResponse({
     status: 200,
-    description: 'Returns the updated product.',
+    description: 'Returns the updated product, including cart items.',
     schema: {
       example: {
         id: '123',
         name: 'Laptop X Updated',
         price: 1399.99,
         description: 'Updated gaming laptop with better GPU',
+        cartItems: [
+          {
+            quantity: 2,
+            color: 'Black',
+            size: '17-inch',
+            notes: 'Urgent shipping required',
+          },
+        ],
       },
     },
   })
   @ApiResponse({
     status: 404,
-    description: 'Product not found.',
+    description: 'Product not found or does not belong to user.',
   })
-  update(@Param('id') id: string, @Body() updateDto: UpdateProductDto) {
-    return this.productService.update(id, updateDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateDto: UpdateProductDto,
+    @Req() req,
+  ) {
+    return this.productService.update(id, req.user.id, updateDto);
   }
 
   @Delete(':id')
@@ -171,7 +199,7 @@ export class ProductController {
     description: 'Bearer <JWT token> (any logged-in user, admin not required)',
     required: true,
   })
-  @ApiOperation({summary: 'Delete a product by ID'})
+  @ApiOperation({summary: 'Delete a product by ID (Only user’s own products)'})
   @ApiParam({
     name: 'id',
     description: 'The ID of the product to delete',
@@ -183,9 +211,9 @@ export class ProductController {
   })
   @ApiResponse({
     status: 404,
-    description: 'Product not found.',
+    description: 'Product not found or does not belong to user.',
   })
-  remove(@Param('id') id: string) {
-    return this.productService.remove(id);
+  remove(@Param('id') id: string, @Req() req) {
+    return this.productService.remove(id, req.user.id);
   }
 }

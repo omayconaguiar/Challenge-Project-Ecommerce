@@ -1,20 +1,20 @@
 // src/app.module.ts
 
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from './auth/auth.module';
-import { CartModule } from './cart/cart.module';
-import { ProductModule } from './product/product.module';
-import { PrismaService } from './prisma/prisma.service';
+import {Module} from '@nestjs/common';
+import {ConfigModule} from '@nestjs/config';
+import {AuthModule} from './auth/auth.module';
+import {ProductModule} from './product/product.module';
+import {PrismaService} from './prisma/prisma.service';
+import {UserModule} from './user/user.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({isGlobal: true}),
     AuthModule,
-    CartModule,
-    ProductModule
+    UserModule,
+    ProductModule,
   ],
   providers: [PrismaService],
-  exports: [PrismaService]
+  exports: [PrismaService],
 })
 export class AppModule {}

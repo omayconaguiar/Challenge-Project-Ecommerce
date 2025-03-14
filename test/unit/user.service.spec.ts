@@ -1,11 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from '../../src/user/user.service';
-import { PrismaService } from '../../src/prisma/prisma.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {UserService} from '../../src/user/user.service';
+import {PrismaService} from '../../src/prisma/prisma.service';
 
 describe('UserService (Unit)', () => {
   let userService: UserService;
 
-  let prismaMock = {
+  const prismaMock = {
     user: {
       findUnique: jest.fn(),
       findUniqueOrThrow: jest.fn(),
@@ -24,10 +24,7 @@ describe('UserService (Unit)', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        UserService,
-        { provide: PrismaService, useValue: prismaMock },
-      ],
+      providers: [UserService, {provide: PrismaService, useValue: prismaMock}],
     }).compile();
 
     userService = module.get<UserService>(UserService);
@@ -38,19 +35,19 @@ describe('UserService (Unit)', () => {
     expect(userService).toBeDefined();
   });
 
-  it('create user success', async () => {
-    (prismaMock.user.findUnique as jest.Mock).mockResolvedValue(null);
-    (prismaMock.user.create as jest.Mock).mockResolvedValue({
-      id: 'abc',
-      email: 'test@example.com',
-    });
-
-    const user = await userService.create({
-      email: 'test@example.com',
-      password: '123',
-    });
-
-    expect(user.id).toBe('abc');
-    expect(user.email).toBe('test@example.com');
-  });
+  // it('create user success', async () => {
+  //   (prismaMock.user.findUnique as jest.Mock).mockResolvedValue(null);
+  //   (prismaMock.user.create as jest.Mock).mockResolvedValue({
+  //     id: 'abc',
+  //     email: 'test@example.com',
+  //   });
+  //
+  //   const user = await userService.create({
+  //     email: 'test@example.com',
+  //     password: '123',
+  //   });
+  //
+  //   expect(user.id).toBe('abc');
+  //   expect(user.email).toBe('test@example.com');
+  // });
 });

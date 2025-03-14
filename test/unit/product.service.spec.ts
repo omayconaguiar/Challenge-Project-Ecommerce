@@ -1,13 +1,13 @@
 // test/unit/product.service.spec.ts
 
-import { Test, TestingModule } from '@nestjs/testing';
-import { ProductService } from '../../src/product/product.service';
-import { PrismaService } from '../../src/prisma/prisma.service';
+import {Test, TestingModule} from '@nestjs/testing';
+import {ProductService} from '../../src/product/product.service';
+import {PrismaService} from '../../src/prisma/prisma.service';
 
 describe('ProductService (Unit)', () => {
   let productService: ProductService;
 
-  let prismaMock = {
+  const prismaMock = {
     product: {
       findUnique: jest.fn(),
       findUniqueOrThrow: jest.fn(),
@@ -28,7 +28,7 @@ describe('ProductService (Unit)', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         ProductService,
-        { provide: PrismaService, useValue: prismaMock },
+        {provide: PrismaService, useValue: prismaMock},
       ],
     }).compile();
 
@@ -41,14 +41,14 @@ describe('ProductService (Unit)', () => {
   });
 
   it('findAll should return an array of products', async () => {
-    (prismaMock.product.findMany as jest.Mock).mockResolvedValue([{ id: '1' }]);
+    (prismaMock.product.findMany as jest.Mock).mockResolvedValue([{id: '1'}]);
     const products = await productService.findAll();
     expect(Array.isArray(products)).toBe(true);
     expect(products[0].id).toBe('1');
   });
 
   it('create should return created product', async () => {
-    (prismaMock.product.create as jest.Mock).mockResolvedValue({ id: '2' });
+    (prismaMock.product.create as jest.Mock).mockResolvedValue({id: '2'});
     const product = await productService.create({
       name: 'Laptop',
       price: 999,

@@ -12,6 +12,15 @@ A **NestJS + Prisma + PostgreSQL** backend API for managing **products**, **orde
 
 ---
 
+## 🌱 Database Seeding
+
+### **Run Seed Script**
+To populate the database with initial data (such as creating an admin user), run:
+
+```sh
+npm run prisma:seed
+```
+
 ### 2️⃣ Install Dependencies
 ```sh
 npm install
