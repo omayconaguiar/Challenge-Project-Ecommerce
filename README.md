@@ -59,6 +59,10 @@ If you change any values outside of that directory, you need to rebuild the cont
 
 ---
 
+## Collection - here is the collection file attached below
+
+E-Commerce-Collection.yaml
+
 ## 🧪 Running Tests
 ### **Unit Tests**
 ```sh
