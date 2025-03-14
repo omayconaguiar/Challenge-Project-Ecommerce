@@ -1,0 +1,793 @@
+_type: export
+__export_format: 4
+__export_date: 2025-03-14T18:04:16.171Z
+__export_source: insomnia.desktop.app:v10.3.1
+resources:
+  - _id: req_b5448c5766ba400a90f65cdac5c61b26
+    parentId: fld_ce2c510348e4475980b6bc5e28d80aab
+    modified: 1741952595606
+    created: 1741818695669
+    url: http://localhost:3004/auth/register
+    name: register
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "email": "user@example6.com",
+          "password": "123456",
+          "name": "test"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/9.0.0
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741862519984
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_ce2c510348e4475980b6bc5e28d80aab
+    parentId: wrk_scratchpad
+    modified: 1741864565546
+    created: 1741862517063
+    name: AUTH
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1741864539937
+    environmentType: kv
+    _type: request_group
+  - _id: wrk_scratchpad
+    parentId: null
+    modified: 1696511022450
+    created: 1696511022450
+    name: Scratch Pad
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_015b782d411246feb5f2509c3bfe7a44
+    parentId: fld_ce2c510348e4475980b6bc5e28d80aab
+    modified: 1741872745093
+    created: 1741871320253
+    url: http://localhost:3004/auth/register-admin
+    name: register admin
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "email": "user@example7.com",
+          "password": "123456"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_8ea6ec37c09d4a2f8a729ee6a2199177
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_af1041ad74c542f2bbc62a8dbf06b25f
+      - id: pair_03691af3be094941bc7d40e695dced83
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMjhmZjIxNC01NDBjLTQ2ODgtYTJiMS1iMThjZDM4YmM2NDQiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDE4NzI3MjQsImV4cCI6MTc0MTg3MzYyNH0.oJb8dIa-ko2A0CMtsL7Yr1x22AGIATn9zBMVZrM4TrM
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741862519959
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_df0a14760bde45b9b7bfbfaa716c00f8
+    parentId: fld_ce2c510348e4475980b6bc5e28d80aab
+    modified: 1741875788039
+    created: 1741813835421
+    url: http://localhost:3004/auth/login
+    name: Login admin
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "email": "user@example6.com",
+          "password": "123456"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/9.0.0
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741862519934
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b5811304bfb34cf3bb46f214a0a42e8f
+    parentId: fld_ce2c510348e4475980b6bc5e28d80aab
+    modified: 1741875840234
+    created: 1741875791897
+    url: http://localhost:3004/auth/login
+    name: Login normal
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "email": "user@example2.com",
+          "password": "123456"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/9.0.0
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741819710855
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_267cba39c2bf4039800676f0a93bdf61
+    parentId: fld_ca7644b244234a368f0cedd021c876e6
+    modified: 1741951763806
+    created: 1741951761505
+    url: http://localhost:3004/auth/register
+    name: user
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "email": "user@example6.com",
+          "password": "123456",
+          "role": "ADMIN"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/9.0.0
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741864544735
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_ca7644b244234a368f0cedd021c876e6
+    parentId: wrk_scratchpad
+    modified: 1741864539837
+    created: 1741864539837
+    name: User
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1741864539837
+    environmentType: kv
+    _type: request_group
+  - _id: req_446eedac8236463883e103c610ed93d7
+    parentId: fld_ca7644b244234a368f0cedd021c876e6
+    modified: 1741874565022
+    created: 1741819332240
+    url: http://localhost:3004/users/732b4237-9af2-4d1c-bfa2-e220b6ec10bb
+    name: Get One
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_9803b53af4b249909478fbd7090fd306
+      - id: pair_e9aa40521d9a471aa7183cb6e09b391f
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMjhmZjIxNC01NDBjLTQ2ODgtYTJiMS1iMThjZDM4YmM2NDQiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDE4NzQ1MTcsImV4cCI6MTc0MTg3NTQxN30.Ac0GDvYstjA5YPSCX4Co0moa-DkpUCmMQm1NQsxiPsg
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741864544635
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_23018f7640884816b3f74d6444e46af8
+    parentId: fld_ca7644b244234a368f0cedd021c876e6
+    modified: 1741966731138
+    created: 1741818857604
+    url: http://localhost:3004/users
+    name: list
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_c39019f474d445739928712ef56cabef
+      - id: pair_b8cccd120ae64b789a824d3f17a2a470
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZTM2NmQyZS0wYWFkLTQxOWEtYWVlYy00NjI1M2VkZDZmNTEiLCJyb2xlIjoiZTg4OTEwNzdjMjJmZWZiYzQyYThjZDE0NmQzOGM3YTJhZTYwODA3NjUwNGExNzgyODYzMWQ4NDdjNmNhMjNhMCIsImlhdCI6MTc0MTk2NjYwNiwiZXhwIjoxNzQxOTY3NTA2fQ.eaEJ7_ZybLN0L3YyUPeGo-T6QhTTjL-5-sbYjzeHWgc
+        description: ""
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741864544610
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_04573509ee364d1ea490528b4a02c01c
+    parentId: fld_ca7644b244234a368f0cedd021c876e6
+    modified: 1741874539436
+    created: 1741819349966
+    url: http://localhost:3004/api/users/3
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_37b1b51441dc4147abac915458fc24b7
+      - id: pair_cce31bf4e1e54a56abb1294b032c5d4d
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMjhmZjIxNC01NDBjLTQ2ODgtYTJiMS1iMThjZDM4YmM2NDQiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDE4NzQ1MTcsImV4cCI6MTc0MTg3NTQxN30.Ac0GDvYstjA5YPSCX4Co0moa-DkpUCmMQm1NQsxiPsg
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741864544597.5
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_55f46f9fc85242709b5ccccbf7525edf
+    parentId: fld_ca7644b244234a368f0cedd021c876e6
+    modified: 1741874548948
+    created: 1741819340536
+    url: http://localhost:3004/api/users/3
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "role": "ADMIN"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_092d07daae5a4384a03fbb9b27a612e3
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_69f10f46a47a4c1a8c11149bee374ef8
+      - id: pair_31735dffae7b449384ec5f10edb00abc
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMjhmZjIxNC01NDBjLTQ2ODgtYTJiMS1iMThjZDM4YmM2NDQiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDE4NzQ1MTcsImV4cCI6MTc0MTg3NTQxN30.Ac0GDvYstjA5YPSCX4Co0moa-DkpUCmMQm1NQsxiPsg
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741864544585
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fe68d1617132497b9fe7ed0ea370cc51
+    parentId: fld_89cc73319e0a4efb9e3285c15e628507
+    modified: 1741875916475
+    created: 1741819389057
+    url: http://localhost:3004/products
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "name": "Laptop X",
+          "price": 1299.99,
+          "description": "High-end gaming laptop"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_bc2d904be5cd4adabc621edc238094a6
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_0fc12be7183e416ba26b70a2581b96bb
+      - id: pair_8b9b2209fb2f4e39b35905a247c2af4f
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZTEyYjdhYy0yNWEwLTRjNzItYmIxZS1kN2FhZTMwZDk1ZWEiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0MTg3NTg0MCwiZXhwIjoxNzQxODc2NzQwfQ.bn2RFu9G7RgyGo6ywn-5Sy5pmoCzqS432qFE78yLpDI
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741863599651
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_89cc73319e0a4efb9e3285c15e628507
+    parentId: wrk_scratchpad
+    modified: 1741863595951
+    created: 1741863595951
+    name: products
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1741863595951
+    environmentType: kv
+    _type: request_group
+  - _id: req_ad0d700019c447fe82c2b3203a09f44d
+    parentId: fld_89cc73319e0a4efb9e3285c15e628507
+    modified: 1741876024737
+    created: 1741819385745
+    url: http://localhost:3004/products
+    name: List
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_ca41809dbd9b45b6976de406690eccad
+      - id: pair_a682caa723b4415db58cd1fd9a3629bb
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZTEyYjdhYy0yNWEwLTRjNzItYmIxZS1kN2FhZTMwZDk1ZWEiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0MTg3NTg0MCwiZXhwIjoxNzQxODc2NzQwfQ.bn2RFu9G7RgyGo6ywn-5Sy5pmoCzqS432qFE78yLpDI
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741863599601
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_dddc52bc34bc4cc499279bf6c5432eb5
+    parentId: fld_89cc73319e0a4efb9e3285c15e628507
+    modified: 1741875905790
+    created: 1741819413191
+    url: http://localhost:3004/api/products/abc123
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_c4264ca07f9f4f56af979580c6530428
+      - id: pair_64eb28eac74b4d37ac174a2f37ef7af5
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMjhmZjIxNC01NDBjLTQ2ODgtYTJiMS1iMThjZDM4YmM2NDQiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDE4NzQ1MTcsImV4cCI6MTc0MTg3NTQxN30.Ac0GDvYstjA5YPSCX4Co0moa-DkpUCmMQm1NQsxiPsg
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741863599576
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_da0b0da315634517a3766fa2631aeb38
+    parentId: fld_89cc73319e0a4efb9e3285c15e628507
+    modified: 1741875907151
+    created: 1741819405866
+    url: http://localhost:3004/api/products/abc123
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "price": 1099.99
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_400b5ce4a430486d9435991f407698a1
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_256359fa81a148d3b1207c564ff4bf20
+      - id: pair_ae6c11496dea48c8b4bd2f338b68a874
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMjhmZjIxNC01NDBjLTQ2ODgtYTJiMS1iMThjZDM4YmM2NDQiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDE4NzQ1MTcsImV4cCI6MTc0MTg3NTQxN30.Ac0GDvYstjA5YPSCX4Co0moa-DkpUCmMQm1NQsxiPsg
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741863599563.5
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2b968cc08ac043d6b35d44d85f7ffb14
+    parentId: fld_89cc73319e0a4efb9e3285c15e628507
+    modified: 1741876030710
+    created: 1741819387332
+    url: http://localhost:3004/products/abc123
+    name: Get One
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_048a9f4fd27e4c84873a3f06c5c43ba4
+      - id: pair_79dc58dbd17b409e917420071543e3e5
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZTEyYjdhYy0yNWEwLTRjNzItYmIxZS1kN2FhZTMwZDk1ZWEiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0MTg3NTg0MCwiZXhwIjoxNzQxODc2NzQwfQ.bn2RFu9G7RgyGo6ywn-5Sy5pmoCzqS432qFE78yLpDI
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741863599551
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0a13be04f24d4b8999c833c1404ab0c4
+    parentId: fld_824ebde0087b415888a99760c04c4e84
+    modified: 1741879265438
+    created: 1741819452330
+    url: http://localhost:3004/cart/items
+    name: Add Item
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "productId": "446b241a-5d80-4c71-a922-abe271c6a597",
+          "quantity": 1,
+          "color": "Red",
+          "size": "M",
+          "notes": "Please include gift wrap"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_db5041d7657d4720b249e3e3ea55b292
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_721a70cc7f2142ec84c9cb7e25c6f697
+      - id: pair_69887c10e3614cda9410750b3fc9c0bb
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZTEyYjdhYy0yNWEwLTRjNzItYmIxZS1kN2FhZTMwZDk1ZWEiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0MTg3OTI1NSwiZXhwIjoxNzQxODgwMTU1fQ.3Vk9SX95YmkZHjE57ZWxtFNv7KMrDg_FcH19_UdaHLw
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741863544299
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_824ebde0087b415888a99760c04c4e84
+    parentId: wrk_scratchpad
+    modified: 1741863525708
+    created: 1741863525708
+    name: item
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1741863525708
+    environmentType: kv
+    _type: request_group
+  - _id: req_9c251b86734f4de381b23a800ab09737
+    parentId: fld_824ebde0087b415888a99760c04c4e84
+    modified: 1741879280060
+    created: 1741819450214
+    url: http://localhost:3004/cart/items
+    name: List Items
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_051a66ba5c884acca5f99557a90ab230
+      - id: pair_7daf74da4b06427b85e029b9460c1357
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZTEyYjdhYy0yNWEwLTRjNzItYmIxZS1kN2FhZTMwZDk1ZWEiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0MTg3OTI1NSwiZXhwIjoxNzQxODgwMTU1fQ.3Vk9SX95YmkZHjE57ZWxtFNv7KMrDg_FcH19_UdaHLw
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741863544249
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_5e2c2f901b514ba4a99f76e677931bd9
+    parentId: fld_824ebde0087b415888a99760c04c4e84
+    modified: 1741877856009
+    created: 1741819455380
+    url: http://localhost:3004/cart/items/cartItem-1
+    name: Remove Item
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/9.0.0
+        id: pair_9ff71b60c4374d6b9715e7fcb23b20c4
+      - id: pair_d1f90e0c99bc4169b6e44d40d02bf787
+        name: Authorization
+        value: Bearer
+          eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZTEyYjdhYy0yNWEwLTRjNzItYmIxZS1kN2FhZTMwZDk1ZWEiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc0MTg3NzgyNywiZXhwIjoxNzQxODc4NzI3fQ.1VLHurRjWp5POGp8srBL75TUX9DChMRuLjWkD9ClXvw
+        description: ""
+        disabled: false
+    authentication: {}
+    preRequestScript: ""
+    metaSortKey: -1741863544199
+    isPrivate: false
+    pathParameters: []
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    parentId: wrk_scratchpad
+    modified: 1700750092417
+    created: 1700750092417
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1700750092417
+    _type: environment
+  - _id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    parentId: wrk_scratchpad
+    modified: 1740560038805
+    created: 1700750092419
+    name: Default Jar
+    cookies:
+      - key: fpc
+        value: AhjBAoLf45pFpHFxNlW9vnapDC7rAgAAAML2Nd8OAAAA
+        expires: 2025-03-08T00:18:31.000Z
+        domain: login.microsoftonline.com
+        path: /
+        secure: true
+        httpOnly: true
+        hostOnly: true
+        creation: 2025-02-05T23:26:44.985Z
+        lastAccessed: 2025-02-06T00:18:31.073Z
+        sameSite: none
+        id: 948e84d3-b836-44d6-97b9-e44156b37e15
+      - key: x-ms-gateway-slice
+        value: estsfd
+        domain: login.microsoftonline.com
+        path: /
+        secure: true
+        httpOnly: true
+        hostOnly: true
+        creation: 2025-02-05T23:26:44.987Z
+        lastAccessed: 2025-02-06T00:18:31.073Z
+        id: a091fd4a-f68d-4e8a-84d2-b38e2a007b3c
+      - key: stsservicecookie
+        value: estsfd
+        domain: login.microsoftonline.com
+        path: /
+        secure: true
+        httpOnly: true
+        hostOnly: true
+        creation: 2025-02-05T23:26:44.987Z
+        lastAccessed: 2025-02-05T23:26:44.987Z
+        id: e7607be3-cbe6-472f-ae3c-1a9d3b8de31c
+      - key: buid
+        value: 1.AVEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABRAA.AQABGgEAAABVrSpeuWamRam2jAF1XRQEmp9bPISN2SAWQTDxQJxrVgjQCRa-9TIceQphAF6xg_qOTwqxPEBzjyH7DgKP23rB0R-GNMekQPtfSZ6rfwyyOvRT7X57MpoQu-8-2ECV1-IgAA
+        expires: 2025-03-08T00:18:31.000Z
+        domain: login.microsoftonline.com
+        path: /
+        secure: true
+        httpOnly: true
+        hostOnly: true
+        creation: 2025-02-05T23:47:54.183Z
+        lastAccessed: 2025-02-06T00:18:31.073Z
+        sameSite: none
+        id: bda5781a-7c3a-4a51-aa85-f8de44232c9c
+      - key: esctx
+        value: PAQABBwEAAABVrSpeuWamRam2jAF1XRQEmGiU6LRjQyro9KWvaHvcdLhkQr8YYJE61JyEXZdEw46-Q2DsVAPLdTPdKWB8eVw0kr1m4cuh4kTP5BPltB5Ov6fn8ZAbR-mexU4zB0BUKTF1R_oAM9lpt5FKVt_ivSokUWSXk9IagG9uYIx9tx05ehpxjxhsRF2jUiDGjBOZMSsgAA
+        domain: login.microsoftonline.com
+        path: /
+        secure: true
+        httpOnly: true
+        hostOnly: false
+        creation: 2025-02-05T23:47:54.184Z
+        lastAccessed: 2025-02-06T00:18:31.073Z
+        sameSite: none
+        id: bca1f299-e091-4e0c-bbfd-86c4986eec89
+      - key: esctx-665hh3vlBWI
+        value: AQABCQEAAABVrSpeuWamRam2jAF1XRQEdwUdhATSuOdnrzlEA_JEzdne2QTHpCMqfLiMUWwajWn1C_6vkcw70HVDzOgSek_KfTlBRx-0a2PzZw7SSNs0Uniliq6vkqFMbhNMWzUzLwfW7WsAafN0UBCjbfwQsOvzbOe-qcuRLLW_SBjSGEwuUyAA
+        domain: login.microsoftonline.com
+        path: /
+        secure: true
+        httpOnly: true
+        hostOnly: false
+        creation: 2025-02-05T23:47:54.184Z
+        lastAccessed: 2025-02-05T23:47:54.184Z
+        sameSite: none
+        id: 11f5a8df-1c90-42d0-8460-a3f0ada3821b
+      - key: esctx-1oA2XyHBLg
+        value: AQABCQEAAABVrSpeuWamRam2jAF1XRQEygMXsJY4dOLysbrZTH2ZIg7DATLLnHb-1_Y-IdL8hYBYOGtxMBnE9t1uIIJWW2KHZsBKEu1QDJPrRJVfYdY-dWVEMleiJmO_apzDW8fv5kc7EODm_b_dlCczbD5dVwqCiiHDMhqOqTN570mdKOa6diAA
+        domain: login.microsoftonline.com
+        path: /
+        secure: true
+        httpOnly: true
+        hostOnly: false
+        creation: 2025-02-05T23:50:11.302Z
+        lastAccessed: 2025-02-05T23:50:11.302Z
+        sameSite: none
+        id: 013239cc-10f2-4f45-b6ed-5fc969b5f4c3
+      - key: esctx-Xs0PjHFcmY
+        value: AQABCQEAAABVrSpeuWamRam2jAF1XRQE54qQc7Os3Cjwro5ki1q3-Zqlad8OG3pbu-PBJSjAUXSeUV0XzrRUwfE7mco3SsQ2ZIuF3a6NxuBWHd7dHdoue9U_ETG77HYZJwYtR8eTl0V5chaEXXQ_t8K4zF88AnE9n5DTwfZmO9BbJ9XFxkDUySAA
+        domain: login.microsoftonline.com
+        path: /
+        secure: true
+        httpOnly: true
+        hostOnly: false
+        creation: 2025-02-06T00:18:11.307Z
+        lastAccessed: 2025-02-06T00:18:11.307Z
+        sameSite: none
+        id: 7c461ed9-d197-4efe-9853-9b571e9bac2a
+      - key: esctx-tbBG3jZzCs
+        value: AQABCQEAAABVrSpeuWamRam2jAF1XRQEzZ_8-htsF72Obt_Up30uYfTzJxC5pYUsRodir9SbBKMjenq6Pwrt_1P1hNUqFTrgKUKs8MJhHZqRviNCMhUlcQMJTf2e6g9MgAqO2VJyqu18KeMIF_91Wl9fvgIeRyzgsgbZwnY1LpkpGwiX5rjC0CAA
+        domain: login.microsoftonline.com
+        path: /
+        secure: true
+        httpOnly: true
+        hostOnly: false
+        creation: 2025-02-06T00:18:31.073Z
+        lastAccessed: 2025-02-06T00:18:31.073Z
+        sameSite: none
+        id: 032dde1c-f5d5-4fe7-ac83-7c4680c4fd79
+      - key: __Host-GAPS
+        value: 1:FIm8JQimeQFFHKfy28Cf1x74pcvp-Q:32Q-Qi78IulGUbWG
+        expires: 2027-02-26T08:53:57.000Z
+        domain: accounts.google.com
+        path: /
+        secure: true
+        httpOnly: true
+        extensions:
+          - Priority=HIGH
+        hostOnly: true
+        creation: 2025-02-06T01:18:39.609Z
+        lastAccessed: 2025-02-26T08:53:58.803Z
+        id: daaa69af-4d75-45dc-a2e8-3639c2a48b4d
+      - key: GEM
+        value: CgptaW51dGVtYWlkEN_v2YvUMg==
+        domain: accounts.google.com
+        path: /
+        secure: true
+        httpOnly: true
+        hostOnly: true
+        creation: 2025-02-06T01:18:39.609Z
+        lastAccessed: 2025-02-26T08:53:58.805Z
+        id: 5e7e53e9-ccc4-4c57-83f0-a68d39f61a22
+    _type: cookie_jar
