@@ -1,5 +1,12 @@
 # 🚀 Challenge-Project-Ecommerce
 
+## Swagger Documentation
+![image](https://github.com/user-attachments/assets/d2f0df74-9fc2-4492-a02a-7e1bdd5b5041)
+
+## Architecture Design
+![image](https://github.com/user-attachments/assets/76ac4f40-2d0a-47da-a9cb-064794f64253)
+
+
 A **NestJS + Prisma + PostgreSQL** backend API for managing **products**, **orders**, and **admin operations** in an e-commerce system.
 
 ## 📌 Features
