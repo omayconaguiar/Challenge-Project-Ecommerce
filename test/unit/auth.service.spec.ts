@@ -1,5 +1,3 @@
-// test/unit/auth.service.spec.ts
-
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from '../../src/auth/auth.service';
 import { PrismaService } from '../../src/prisma/prisma.service';
@@ -71,6 +69,7 @@ describe('AuthService (Unit)', () => {
         id: '123',
         password: 'hashed-pass',
         role: 'USER',
+        name: 'Test User', // 🔹 Adicionamos o nome no mock do usuário
       });
 
       (bcrypt.compare as jest.Mock).mockResolvedValue(true);
@@ -88,7 +87,11 @@ describe('AuthService (Unit)', () => {
       (prismaMock.user.findUnique as jest.Mock).mockResolvedValue({ id: '999' });
 
       await expect(
-        authService.register({ email: 'test@example.com', password: '123' }),
+        authService.register({
+          email: 'test@example.com',
+          password: '123',
+          name: 'Test User', // 🔹 Adicionado o nome, pois agora é obrigatório
+        }),
       ).rejects.toThrowError('Email is already in use');
     });
 
@@ -99,6 +102,7 @@ describe('AuthService (Unit)', () => {
         id: '111',
         email: 'new@example.com',
         role: 'USER',
+        name: 'New User', // 🔹 Nome agora faz parte do retorno
       });
 
       (bcrypt.hash as jest.Mock).mockResolvedValue('hashed-password');
@@ -106,10 +110,12 @@ describe('AuthService (Unit)', () => {
       const user = await authService.register({
         email: 'new@example.com',
         password: 'pass',
+        name: 'New User', // 🔹 Adicionado no DTO de entrada
       });
 
       expect(user.email).toBe('new@example.com');
       expect(user.role).toBe('USER');
+      expect(user.name).toBe('New User'); // 🔹 Verificando o nome
       expect(bcrypt.hash).toHaveBeenCalledWith('pass', 10);
     });
   });
