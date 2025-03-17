@@ -100,3 +100,7 @@ This project is **UNLICENSED**.
 
 ### **🔥 Developed with NestJS, Prisma & PostgreSQL**
 🚀 **Happy coding!**
+
+
+## How to run Frontend project?
+🚀 **challenge-fe and go to READ.ME file**

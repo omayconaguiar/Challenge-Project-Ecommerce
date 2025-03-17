@@ -1,0 +1,62 @@
+.app-container {
+    display: flex;
+    font-family: sans-serif;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background: #f3f3f3;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  
+  .sidebar h2 {
+    margin-top: 0;
+  }
+  
+  .section-title {
+    margin: 1rem 0 0.5rem 0;
+    font-weight: bold;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar li {
+    margin: 0.3rem 0;
+    padding: 0.3rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .sidebar li:hover {
+    background: #e2e2e2;
+  }
+  
+  .sidebar li.active {
+    background: #ccc;
+    font-weight: bold;
+  }
+  
+  .doc-content {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  
+  .doc-section {
+    margin-bottom: 1rem;
+  }
+  
+  pre {
+    background: #f7f7f7;
+    padding: 0.5rem;
+    border-radius: 4px;
+    overflow: auto;
+  }
+  
